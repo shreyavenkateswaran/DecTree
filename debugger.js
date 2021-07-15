@@ -26,10 +26,10 @@ var diagram = null;
 
 // console.log(str);
 
-var input1 = document.querySelector('input');
+var input6 = document.querySelector('#verify');
 var textarea = document.querySelector('textarea');
-input1.addEventListener('change', () => {
-	let files = input1.files;
+input6.addEventListener('change', () => {
+	let files = input6.files;
 	if (files.length == 0) return;
 
 	const file = files[0];
@@ -43,50 +43,50 @@ input1.addEventListener('change', () => {
 
 	reader.readAsText(file);
 });
-function verify() {
-	// document.getElementById("undo").style.display = "inline-block";
-	str = $('#input').val().split("\n");
-	n = str.length;
-	vec = new Array(n);
-	obj = new Array(n);
-	for (var i = 0; i < obj.length; i++) {
-		obj[i] = new Array(4);
-		arr[i] = new Array(0);
-	}
+// function validate() {
+// 	// document.getElementById("undo").style.display = "inline-block";
+// 	str = $('#input').val().split("\n");
+// 	n = str.length;
+// 	vec = new Array(n);
+// 	obj = new Array(n);
+// 	for (var i = 0; i < obj.length; i++) {
+// 		obj[i] = new Array(4);
+// 		arr[i] = new Array(0);
+// 	}
 
-	 console.log(n);
+// 	 console.log(n);
 
-	let p = 3;
-	// console.log(str[1]);
-	for (var i = 0; i < n; i++) {
-		let size = 0;
-		for (var j = 0; j < str[i].length; j++) {
-			if (str[i][j] != '-') break;
-			else size++;
-		}
-		// console.log(size);
-		vec[size / 2] = i;
-		if (size == 0) {
-			p++;
-			// arr[0].push(i);
-			zero.push(i);
-		}
-		else {
-			arr[vec[(size / 2) - 1]].push(i);
-		}
-		// console.log(size);
-		let len = str[i].length;
-		// let s = str[i].search(',');
-		str[i] = str[i].substring(size);
-		obj[size / 2].push(str[i]);
-	}
+// 	let p = 3;
+// 	// console.log(str[1]);
+// 	for (var i = 0; i < n; i++) {
+// 		let size = 0;
+// 		for (var j = 0; j < str[i].length; j++) {
+// 			if (str[i][j] != '-') break;
+// 			else size++;
+// 		}
+// 		// console.log(size);
+// 		vec[size / 2] = i;
+// 		if (size == 0) {
+// 			p++;
+// 			// arr[0].push(i);
+// 			zero.push(i);
+// 		}
+// 		else {
+// 			arr[vec[(size / 2) - 1]].push(i);
+// 		}
+// 		// console.log(size);
+// 		let len = str[i].length;
+// 		// let s = str[i].search(',');
+// 		str[i] = str[i].substring(size);
+// 		obj[size / 2].push(str[i]);
+// 	}
 
-	console.log(arr);
-	localStorage.setItem("str-array", JSON.stringify(str));
-	localStorage.setItem("arr-array", JSON.stringify(arr));
+// 	console.log(arr);
+// 	localStorage.setItem("str-array", JSON.stringify(str));
+// 	localStorage.setItem("arr-array", JSON.stringify(arr));
 
-	document.location.href = "tree.html";
-}
+// 	document.location.href = "tree.html";
+// }
 
 // var str = JSON.parse(localStorage.getItem("str-array"));
 // var arr = JSON.parse(localStorage.getItem("arr-array"));
