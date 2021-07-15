@@ -12,7 +12,7 @@ var AnimationEvents = MindFusion.Animations.Events;
 var str = [];
 var n;
 var obj;
-let stack = [];
+// let stack = [];
 var arr = [];
 var zero = [];
 var vec;
@@ -54,7 +54,7 @@ function input() {
 		arr[i] = new Array(0);
 	}
 
-	 console.log(n);
+	console.log(n);
 
 	let p = 3;
 	// console.log(str[1]);
