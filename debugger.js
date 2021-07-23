@@ -150,5 +150,6 @@ function validate() {
             //alert("else condition 1");
             document.location.href = "tree.html";
     }
-   
+   }
+}
 
