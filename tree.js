@@ -30,15 +30,15 @@ function myFunction() {
     zoomer.setTarget(diagram);
 
     var defaultTemplate = `
-		<p>Choose a state:<p>
-		<div><select data-interactive="true" data-event-change="selectClick" name="states" id="states">
-		<option value="none" selected></option>
-		<option value="Ohio">India</option>
-		<option value="South Dakota">South Dakota</option>
-		<option value="Washington">Washington</option>
-		<option value="Texas">Texas</option>
-		</select>
-		</div>`;
+        <p>Choose a state:<p>
+        <div><select data-interactive="true" data-event-change="selectClick" name="states" id="states">
+        <option value="none" selected></option>
+        <option value="Ohio">India</option>
+        <option value="South Dakota">South Dakota</option>
+        <option value="Washington">Washington</option>
+        <option value="Texas">Texas</option>
+        </select>
+        </div>`;
 
     // diagram.setDefaultControlTemplate(defaultTemplate);
 
