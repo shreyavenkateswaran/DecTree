@@ -127,6 +127,8 @@ function validate() {
    
    
    //alert("Abut to embark into for loop arr length " + str.length );
+
+   let errorFlag = false;
    
    for(let i = 0; i < str.length; i++){
        
@@ -143,13 +145,15 @@ function validate() {
           || str[i].indexOf('Where') != -1 || str[i].indexOf('So are there') != -1 || str[i].indexOf('Did') != -1 || str[i].indexOf('do') != -1){
         if  (str[i].indexOf('?') == -1  ) {
             alert("Please check to see if there is a question mark (?) after every question or if there are any extra question marks. The allowed question words are: Are, Do, Does, Would, Is, What, Have you, Where, So are there, Did.");
-            document.location.href = "#";
+			errorFlag = true;
+            
         }
     }
-    else {
-            //alert("else condition 1");
-            document.location.href = "tree.html";
-    }
-   }
+    
 }
-
+if(errorFlag){
+	document.location.href = "#";
+}else{
+	document.location.href = "tree.html";
+}
+}
