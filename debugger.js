@@ -1,14 +1,4 @@
-// var Diagram = MindFusion.Diagramming.Diagram;
-// var DiagramLink = MindFusion.Diagramming.DiagramLink;
-// var ControlNode = MindFusion.Diagramming.ControlNode;
 
-// var Rect = MindFusion.Drawing.Rect;
-// var Point = MindFusion.Drawing.Point;
-
-// var Animation = MindFusion.Animations.Animation;
-// var AnimationType = MindFusion.Animations.AnimationType;
-// var EasingType = MindFusion.Animations.EasingType;
-// var AnimationEvents = MindFusion.Animations.Events;
 var str = [];
 var n;
 var obj;
@@ -19,12 +9,7 @@ var vec;
 var bx = 50, by = 40;
 var diagram = null;
 
-// $(document).ready(function () {
-//  diagram = Diagram.create(document.getElementById("diagram"));
-//  diagram.setBounds(new Rect(0, 0, 500, 500));
-// });
 
-// console.log(str);
 
 var input = document.querySelector('input');
 var textarea = document.querySelector('textarea');
@@ -36,8 +21,7 @@ console.log(verify);
 
 if(input){
     input.addEventListener('change', () => {
-    
-    //alert("change in text area");
+
 
     let files = input.files;
     if (files.length == 0) return;
@@ -55,13 +39,13 @@ if(input){
 });
 }
 function validate() {
-    // document.getElementById("undo").style.display = "inline-block";
+
 
     
 
     
     str = $('#input').val().split("\n");
-    //alert("validate method" + str.length);
+
     n = str.length;
     vec = new Array(n);
     obj = new Array(n);
@@ -72,37 +56,7 @@ function validate() {
         arr[i] = new Array(0);
     }
 
-//      alert("inside for loop n value " + obj.length);
-//      alert("String length " + n);
-
-    let p = 3;
-    // console.log(str[1]);
-    for (var i = 0; i < n; i++) {
-        let size = 0;
-        for (var j = 0; j < str[i].length; j++) {
-            if (str[i][j] != '-') break;
-            else {
-                size++;
-                //alert("size increment");
-            } 
-        }
-        // console.log(size);
-        vec[size / 2] = i;
-        if (size == 0) {
-            p++;
-            // arr[0].push(i);
-            zero.push(i);
-        }
-        else {
-            arr[vec[(size / 2) - 1]].push(i);
-        }
-        // console.log(size);
-        let len = str[i].length;
-        // let s = str[i].search(',');
-        str[i] = str[i].substring(size);
-        obj[size / 2].push(str[i]);
-    }
-
+    
     console.log(arr.length);
     localStorage.setItem("str-array", JSON.stringify(str));
     localStorage.setItem("arr-array", JSON.stringify(arr));
@@ -115,9 +69,7 @@ function validate() {
    
     arr = str;
 
-    // console.log("str");
-    // alert("str length" + str.length);
-    // alert("arr lenth " + arr.length);
+
    
    
     var dashCounter = 0;
@@ -126,37 +78,73 @@ function validate() {
    var i;
    
    
-   //alert("Abut to embark into for loop arr length " + str.length );
 
-   let errorFlag = false;
    
+   let errorFlagQuestion = false;
+   let errorFlagDash = false;
+   let errorFlagIf = false;
+
    for(let i = 0; i < str.length; i++){
        
-       // for(let j = 0 ; j < arr[i].length; j++){
-       //     console.log(j);
-       //alert("inside click verify counter " + str[i] );
-
-       //alert ("str[i].indexOf (\"Are\") " + str[i].indexOf('you'));
-   
-      // console.log(str[i]);
+      
    
     if(str[i].indexOf('Are') != -1 || str[i].indexOf('Do') != -1 || str[i].indexOf('Does') != -1 || str[i].indexOf('Would') != -1 
         || str[i].indexOf('Is') != -1 || str[i].indexOf('What') != -1 || str[i].indexOf('Have you') != -1 
           || str[i].indexOf('Where') != -1 || str[i].indexOf('So are there') != -1 || str[i].indexOf('Did') != -1 || str[i].indexOf('do') != -1){
         if  (str[i].indexOf('?') == -1  ) {
-            // alert("Please check to see if there is a question mark (?) after every question or if there are any extra question marks. The allowed question words are: Are, Do, Does, Would, Is, What, Have you, Where, So are there, Did.");
-			errorFlag = true;
+            
+            errorFlagQuestion = true;
             
         }
     }
+   
+       
+       if (str[i].indexOf('-') != 1 ){
+        
+           dashCounter++;
+       }
+       
+   
+       if(str[i].indexOf('If No') != -1 || str[i].indexOf('If no') != -1 || arr[i].indexOf('if no') != -1 || arr[i].indexOf('if No') != -1 ){
+        
+           ifNo++;
+       }
+   
+       if(arr[i].indexOf('If Yes') != -1 || arr[i].indexOf('If yes') != -1 || arr[i].indexOf('if yes') != -1 || arr[i].indexOf('if Yes') != -1 ){
+        
+           ifYes++;
+       }
+   
+      
+   
+   } 
 
-	//if(str[i])
-    
+   if(ifNo != ifYes){
+        //alert("Unequal If No's or If Yes's");
+        errorFlagIf = true;
+    }
+
+    if(dashCounter%2 != 0){
+        //alert("Wrong number of hyphens!");
+        errorFlagDash = true;
+    }
+
+    if (errorFlagQuestion) {
+		alert("Please check to see if there is a question mark (?) after every question or if there are any extra question marks. The allowed question words are: Are, Do, Does, Would, Is, What, Have you, Where, So are there, Did.");
+	}
+
+	if (errorFlagDash) {
+		alert("Wrong number of hyphens! "+ dashCounter);
+    }
+
+	if (errorFlagIf) {
+		alert("Unequal If No's or If Yes's");
+    }
+
+	if(errorFlagQuestion||errorFlagDash||errorFlagIf){
+		document.location.href = "#";
+	}else{
+		document.location.href = "tree.html";
+	}
 }
-if(errorFlag){
-	alert("Please check to see if there is a question mark (?) after every question or if there are any extra question marks. The allowed question words are: Are, Do, Does, Would, Is, What, Have you, Where, So are there, Did.");
-	document.location.href = "#";
-}else{
-	document.location.href = "tree.html";
-}
-}
+
